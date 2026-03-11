@@ -88,49 +88,6 @@ const Bantuan = () => {
         }
     ];
 
-    const complaintCategories = [
-        {
-            id: 'harga',
-            icon: <FileText size={20} className="text-blue-600" />,
-            bg: 'bg-blue-50',
-            title: 'Harga & Takaran Pengisian',
-            desc: 'Ada masalah ketidaksesuaian harga atau takaran volume pengisian BBM.',
-            action: () => alert('Fitur dalam pengembangan')
-        },
-        {
-            id: 'ketersediaan',
-            icon: <MapPin size={20} className="text-emerald-600" />,
-            bg: 'bg-emerald-50',
-            title: 'Ketersediaan BBM',
-            desc: 'Stok BBM kosong dalam waktu lama atau antrean tidak wajar di SPBU.',
-            action: () => alert('Fitur dalam pengembangan')
-        },
-        {
-            id: 'kualitas',
-            icon: <Droplets size={20} className="text-orange-600" />,
-            bg: 'bg-orange-50',
-            title: 'Kualitas Produk BBM',
-            desc: 'Laporkan masalah kualitas bahan bakar yang mempengaruhi performa kendaraan setelah pengisian.',
-            action: () => navigate('/komplain-bbm')
-        },
-        {
-            id: 'operasional',
-            icon: <HelpCircle size={20} className="text-purple-600" />,
-            bg: 'bg-purple-50',
-            title: 'Operasional & Pelayanan SPBU',
-            desc: 'Keluhan layanan petugas, fasilitas toilet/mushola kotor, atau mesin rusak.',
-            action: () => alert('Fitur dalam pengembangan')
-        },
-        {
-            id: 'pembayaran',
-            icon: <CreditCard size={20} className="text-cyan-600" />,
-            bg: 'bg-cyan-50',
-            title: 'Pembayaran & Transaksi',
-            desc: 'Gagal scan QR, double claim pembayaran, atau struk tidak tercetak.',
-            action: () => alert('Fitur dalam pengembangan')
-        }
-    ];
-
 
     return (
         <>
@@ -180,32 +137,23 @@ const Bantuan = () => {
                         })}
                     </div>
 
-                    {/* Complaint Categories Section */}
-                    <div className="mt-8">
-                        <div className="flex items-center gap-2 mb-4">
-                            <HeadphonesIcon className="text-red-500" size={20} />
-                            <h2 className="text-lg font-bold text-neutral-900">Kategori Komplain SPBU</h2>
-                        </div>
-                        <p className="text-sm text-neutral-500 mb-4">Pilih kategori masalah yang Anda hadapi untuk bantuan yang lebih cepat dan tepat.</p>
-
-                        <div className="space-y-3">
-                            {complaintCategories.map((cat) => (
-                                <button
-                                    key={cat.id}
-                                    onClick={cat.action}
-                                    className="w-full bg-white rounded-xl border border-neutral-200 p-4 hover:border-red-200 hover:shadow-sm transition-all text-left flex items-start gap-4 active:scale-[0.99]"
-                                >
-                                    <div className={`p-3 rounded-xl ${cat.bg} shrink-0`}>
-                                        {cat.icon}
-                                    </div>
-                                    <div className="flex-1">
-                                        <h3 className="text-sm font-bold text-neutral-900 mb-1">{cat.title}</h3>
-                                        <p className="text-xs text-neutral-500 leading-relaxed">{cat.desc}</p>
-                                    </div>
-                                    <ChevronRight size={18} className="text-neutral-300 mt-1 shrink-0" />
-                                </button>
-                            ))}
-                        </div>
+                    {/* Dedicated Complaint Entry Point */}
+                    <div className="mt-8 space-y-3">
+                        <button
+                            onClick={() => navigate('/komplain-spbu')}
+                            className="w-full bg-red-50 rounded-xl border border-red-100 p-4 hover:border-red-300 hover:shadow-sm transition-all text-left flex items-center gap-4 active:scale-[0.99]"
+                        >
+                            <div className="p-3 rounded-full bg-white text-red-600 shadow-sm shrink-0">
+                                <HeadphonesIcon size={24} />
+                            </div>
+                            <div className="flex-1">
+                                <h2 className="text-base font-bold text-red-900 mb-1">Komplain SPBU</h2>
+                                <p className="text-xs text-red-700 leading-relaxed">
+                                    Laporkan kendala terkait pengisian BBM, layanan SPBU, atau transaksi.
+                                </p>
+                            </div>
+                            <ChevronRight size={20} className="text-red-400 shrink-0" />
+                        </button>
                     </div>
                 </div>
             </Layout>

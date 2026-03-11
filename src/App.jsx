@@ -16,6 +16,7 @@ import ClaimHistory from '@/pages/ClaimHistory';
 import ClaimDetail from '@/pages/ClaimDetail';
 import RebuttalForm from '@/pages/RebuttalForm';
 import Bantuan from '@/pages/Bantuan';
+import KomplainSPBU from '@/pages/KomplainSPBU';
 import TransactionDetail from '@/pages/TransactionDetail';
 import NotificationInboxPage from '@/pages/NotificationInboxPage';
 import PesanPage from '@/pages/PesanPage';
@@ -40,6 +41,7 @@ function App() {
               <Route path="/bantuan" element={<Bantuan />} />
               <Route path="/notifikasi" element={<Navigate to="/pesan" replace />} />
               <Route path="/pesan" element={<PesanPage />} />
+              <Route path="/komplain-spbu" element={<KomplainSPBU />} />
 
               {/* Fuel Complaint Flow */}
               <Route path="/komplain-bbm" element={<ClaimLanding />} />
