@@ -8,7 +8,7 @@ import StatusBadge from '@/components/ui/StatusBadge';
 import { useClaims } from '@/context/ClaimContext';
 import { useNotifications } from '@/context/NotificationContext';
 import { startInvestigationFlow, startRebuttalFlow } from '@/lib/useInvestigationFlow';
-import { Calendar, MapPin, FileText, AlertCircle, MessageSquare, Hash, Fuel, CheckCircle2, Circle, Receipt, ClipboardList, BadgeCheck, FlaskConical, Info } from 'lucide-react';
+import { Calendar, MapPin, FileText, AlertCircle, MessageSquare, Hash, Fuel, CheckCircle2, Circle, Receipt, ClipboardList, BadgeCheck, FlaskConical, Info, Edit, Lock } from 'lucide-react';
 import { SLA } from '@/lib/constants';
 import { motion } from 'framer-motion';
 
@@ -340,6 +340,28 @@ const ClaimDetail = () => {
                                 ))}
                             </div>
                         </Card>
+                    </div>
+                )}
+
+                {/* Edit Section */}
+                {claim.status === 'received' && (
+                    <div className="pt-2">
+                        <Button
+                            variant="outline"
+                            className="w-full font-bold justify-center border-neutral-300 text-neutral-700 hover:bg-neutral-50"
+                            onClick={() => navigate(`/komplain-bbm/${claimId}/edit`, { state: { editMode: true, claimData: claim } })}
+                        >
+                            <Edit size={16} className="mr-2" /> Edit Komplain
+                        </Button>
+                    </div>
+                )}
+
+                {['verifying', 'process', 'investigation', 'rebuttal', 'rebuttal_investigation'].includes(claim.status) && (
+                    <div className="pt-2">
+                        <div className="flex items-start gap-2 text-xs text-neutral-500 bg-neutral-50 p-3 rounded-lg border border-neutral-100">
+                            <Lock size={14} className="mt-0.5 flex-shrink-0" />
+                            <p>Komplain hanya dapat diubah sebelum proses verifikasi dimulai.</p>
+                        </div>
                     </div>
                 )}
             </div>

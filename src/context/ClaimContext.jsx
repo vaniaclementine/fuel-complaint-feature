@@ -156,8 +156,17 @@ export const ClaimProvider = ({ children }) => {
         }));
     };
 
+    const updateClaimData = (claimId, updatedData) => {
+        setClaims(prev => prev.map(claim => {
+            if (claim.id === claimId) {
+                return { ...claim, ...updatedData };
+            }
+            return claim;
+        }));
+    };
+
     return (
-        <ClaimContext.Provider value={{ claims, addClaim, submitRebuttal, getClaim, updateClaimStatus }}>
+        <ClaimContext.Provider value={{ claims, addClaim, submitRebuttal, getClaim, updateClaimStatus, updateClaimData }}>
             {children}
         </ClaimContext.Provider>
     );

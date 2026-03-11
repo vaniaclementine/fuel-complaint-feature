@@ -13,7 +13,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { FUEL_TYPES } from '@/lib/constants';
 
-const MINIMUM_CLAIM_VALUE = 100_000;
+const MINIMUM_CLAIM_VALUE = 1_000_000;
 
 let manualCounter = 1;
 const generateManualId = () => `MANUAL-${String(manualCounter++).padStart(3, '0')}`;

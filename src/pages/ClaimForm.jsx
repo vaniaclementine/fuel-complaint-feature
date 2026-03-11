@@ -73,12 +73,15 @@ const EvidenceUploadBox = ({
 const ClaimForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { addClaim } = useClaims();
+    const { addClaim, updateClaimData } = useClaims();
     const { getTransaction, formatDate } = useTransactions();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Submission context from navigation state
     // method: 'digital' | 'manual' | 'mixed'
+    const editMode = location.state?.editMode || false;
+    const claimData = location.state?.claimData || null;
+
     const method = location.state?.method || 'digital';
     const prefilledTransactionId = location.state?.transactionId;
     const selectedTransactions = location.state?.selectedTransactions || null; // new multi-select
@@ -89,10 +92,10 @@ const ClaimForm = () => {
         ? getTransaction(prefilledTransactionId)
         : null;
 
-    // Form state
+    // Form state pre-filled for editMode
     const [formData, setFormData] = useState({
-        issueType: '',
-        description: '',
+        issueType: claimData ? (ISSUE_TYPES.find(t => t.label === claimData.issueType)?.value || claimData.issueType || '') : '',
+        description: claimData?.description || '',
         // Manual-only fields (legacy single-manual flow)
         manualSpbu: '',
         manualDate: '',
@@ -137,11 +140,17 @@ const ClaimForm = () => {
         const newErrors = {};
         if (!formData.issueType) newErrors.issueType = 'Pilih jenis kendala';
         if (!formData.description.trim()) newErrors.description = 'Deskripsi tidak boleh kosong';
-        if (evidence.struk.length === 0) newErrors.struk = 'Foto struk / bukti transaksi wajib diupload';
-        if (evidence.vehicle.length === 0) newErrors.vehicle = 'Foto kondisi kendaraan wajib diupload';
-        if (evidence.workshop.length === 0) newErrors.workshop = 'Nota servis bengkel wajib diupload';
+
+        // Only enforce file uploads if we are NOT in editMode.
+        // In editMode, they already uploaded files. Replacing files won't strictly be required unless they actually clear them.
+        if (!editMode) {
+            if (evidence.struk.length === 0) newErrors.struk = 'Foto struk / bukti transaksi wajib diupload';
+            if (evidence.vehicle.length === 0) newErrors.vehicle = 'Foto kondisi kendaraan wajib diupload';
+            if (evidence.workshop.length === 0) newErrors.workshop = 'Nota servis bengkel wajib diupload';
+        }
+
         // Legacy manual-only gate
-        if (method === 'manual' && !selectedTransactions) {
+        if (!editMode && method === 'manual' && !selectedTransactions) {
             if (!formData.manualSpbu.trim()) newErrors.manualSpbu = 'Nama SPBU wajib diisi';
             if (!formData.manualDate) newErrors.manualDate = 'Tanggal transaksi wajib diisi';
             if (!formData.manualFuelType) newErrors.manualFuelType = 'Pilih jenis BBM';
@@ -158,8 +167,34 @@ const ClaimForm = () => {
         await new Promise(resolve => setTimeout(resolve, 1500));
 
         const issueLabel = ISSUE_TYPES.find(t => t.value === formData.issueType)?.label;
-        const fuelLabel = FUEL_TYPES.find(f => f.value === formData.manualFuelType)?.label;
 
+        // If Edit Mode, just update and redirect back to details
+        if (editMode && claimData) {
+            const newFiles = [
+                ...evidence.struk.map(f => ({ name: f.name, size: f.size, category: 'Struk / Bukti Transaksi' })),
+                ...evidence.vehicle.map(f => ({ name: f.name, size: f.size, category: 'Foto Kendaraan' })),
+                ...evidence.video.map(f => ({ name: f.name, size: f.size, category: 'Video Suara Mesin' })),
+                ...evidence.workshop.map(f => ({ name: f.name, size: f.size, category: 'Nota Servis Bengkel' })),
+                ...evidence.additional.map(f => ({ name: f.name, size: f.size, category: 'Bukti Tambahan' })),
+            ];
+
+            const updatedData = {
+                issueType: issueLabel,
+                description: formData.description,
+            };
+
+            // Only override files if they actually uploaded new ones. Otherwise keep existing.
+            if (newFiles.length > 0) {
+                updatedData.files = newFiles;
+            }
+
+            updateClaimData(claimData.id, updatedData);
+            setIsSubmitting(false);
+            navigate(`/komplain-bbm/${claimData.id}`);
+            return;
+        }
+
+        const fuelLabel = FUEL_TYPES.find(f => f.value === formData.manualFuelType)?.label;
         let transactionId, location_str, product, amount;
 
         if (selectedTransactions && selectedTransactions.length > 0) {
@@ -220,7 +255,7 @@ const ClaimForm = () => {
 
     return (
         <Layout showBottomNav={false}>
-            <Header title="Ajukan Komplain BBM" />
+            <Header title={editMode ? "Edit Komplain BBM" : "Ajukan Komplain BBM"} />
 
             <form onSubmit={handleSubmit} className="p-4 space-y-6 pb-24">
                 {/* Submission method badge */}
@@ -250,10 +285,17 @@ const ClaimForm = () => {
                 </div>
 
                 {/* Info notice */}
-                <div className="bg-neutral-50 p-3 rounded-xl border border-neutral-200 text-sm text-neutral-700 flex gap-3">
-                    <AlertCircle className="flex-shrink-0 mt-0.5 text-neutral-500" size={18} />
-                    <p className="text-xs">Pastikan semua data yang Anda berikan akurat dan lengkap untuk mempercepat proses verifikasi.</p>
-                </div>
+                {!editMode ? (
+                    <div className="bg-neutral-50 p-3 rounded-xl border border-neutral-200 text-sm text-neutral-700 flex gap-3">
+                        <AlertCircle className="flex-shrink-0 mt-0.5 text-neutral-500" size={18} />
+                        <p className="text-xs">Pastikan semua data yang Anda berikan akurat dan lengkap untuk mempercepat proses verifikasi.</p>
+                    </div>
+                ) : (
+                    <div className="bg-blue-50 p-3 rounded-xl border border-blue-100 text-sm text-blue-900 flex gap-3">
+                        <AlertCircle className="flex-shrink-0 mt-0.5 text-blue-600" size={18} />
+                        <p className="text-xs">Anda sedang menggunakan mode edit. Merubah jenis bukti akan mengganti file sebelumnya secara keseluruhan jika diisi.</p>
+                    </div>
+                )}
 
                 <div className="space-y-5">
                     {/* MIXED: multi-transaction summary table */}
@@ -507,7 +549,7 @@ const ClaimForm = () => {
                         className="w-full font-bold shadow-lg text-white bg-[#1B4E9B] hover:bg-[#1B4E9B]/90"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'Mengirim Data...' : 'Kirim Komplain'}
+                        {isSubmitting ? 'Memproses...' : (editMode ? 'Simpan Perubahan' : 'Kirim Komplain')}
                     </Button>
                 </div>
             </form>

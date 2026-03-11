@@ -50,6 +50,7 @@ function App() {
               <Route path="/komplain-bbm/sukses" element={<ClaimSuccess />} />
               <Route path="/komplain-bbm/riwayat" element={<ClaimHistory />} />
               <Route path="/komplain-bbm/:claimId" element={<ClaimDetail />} />
+              <Route path="/komplain-bbm/:claimId/edit" element={<ClaimForm />} />
               <Route path="/komplain-bbm/:claimId/sanggahan" element={<RebuttalForm />} />
 
               {/* Legacy redirects for old /claim/* paths */}
