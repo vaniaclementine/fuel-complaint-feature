@@ -8,7 +8,7 @@ import StatusBadge from '@/components/ui/StatusBadge';
 import { useClaims } from '@/context/ClaimContext';
 import { useNotifications } from '@/context/NotificationContext';
 import { startInvestigationFlow, startRebuttalFlow } from '@/lib/useInvestigationFlow';
-import { Calendar, MapPin, FileText, AlertCircle, MessageSquare, Hash, Fuel, CheckCircle2, Circle, Receipt, ClipboardList, BadgeCheck, FlaskConical } from 'lucide-react';
+import { Calendar, MapPin, FileText, AlertCircle, MessageSquare, Hash, Fuel, CheckCircle2, Circle, Receipt, ClipboardList, BadgeCheck, FlaskConical, Info } from 'lucide-react';
 import { SLA } from '@/lib/constants';
 import { motion } from 'framer-motion';
 
@@ -43,6 +43,7 @@ const ClaimDetail = () => {
     const isRebuttalRejected = claim.status === 'rebuttal_rejected';
     const canSubmitRebuttal = isRejected && !claim.rebuttalSubmitted;
     const isFinalState = ['done', 'rejected', 'rebuttal_accepted', 'rebuttal_rejected'].includes(claim.status);
+    const showEstimate = ['verifying', 'process', 'investigation', 'rebuttal_investigation'].includes(claim.status);
 
     const handleSimulate = (outcome) => {
         setSimLoading(outcome);
@@ -246,6 +247,27 @@ const ClaimDetail = () => {
                                         </div>
                                     );
                                 })}
+                            </div>
+                        </Card>
+                    </div>
+                )}
+
+                {/* Estimated Compensation */}
+                {showEstimate && (
+                    <div>
+                        <h3 className="text-sm font-semibold text-neutral-900 mb-2">Estimasi Kompensasi</h3>
+                        <Card className="bg-amber-50 border-amber-100">
+                            <div className="flex items-start gap-3">
+                                <Info className="text-amber-600 mt-0.5" size={20} />
+                                <div>
+                                    <p className="text-lg font-bold text-amber-900">
+                                        Rp {(claim.compensationAmount || claim.amount || 0).toLocaleString('id-ID')}
+                                    </p>
+                                    <p className="text-xs text-amber-800 leading-relaxed mt-1">
+                                        Estimasi kompensasi yang mungkin diterima apabila komplain disetujui.<br />
+                                        Nominal final akan ditentukan setelah proses investigasi selesai.
+                                    </p>
+                                </div>
                             </div>
                         </Card>
                     </div>
