@@ -10,6 +10,7 @@ const AkunAnda = () => {
         lainnya: [
             { id: 'ganti-pin', label: 'Ganti PIN', path: '/ganti-pin' },
             { id: 'bantuan', label: 'Bantuan', path: '/bantuan' },
+            { id: 'komplain', label: 'Komplain', path: '/komplain' },
             { id: 'tentang', label: 'Tentang MyPertamina', path: '/tentang' },
         ],
         komunikasiPrivasi: [

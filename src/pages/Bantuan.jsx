@@ -138,21 +138,23 @@ const Bantuan = () => {
                     </div>
 
                     {/* Dedicated Complaint Entry Point */}
-                    <div className="mt-8 space-y-3">
+                    <div className="mt-4 space-y-2">
                         <button
-                            onClick={() => navigate('/komplain-spbu')}
-                            className="w-full bg-red-50 rounded-xl border border-red-100 p-4 hover:border-red-300 hover:shadow-sm transition-all text-left flex items-center gap-4 active:scale-[0.99]"
+                            onClick={() => navigate('/komplain')}
+                            className="w-full flex items-center justify-between p-4 bg-white rounded-xl border border-neutral-100 hover:bg-neutral-50 transition-colors"
                         >
-                            <div className="p-3 rounded-full bg-white text-red-600 shadow-sm shrink-0">
-                                <HeadphonesIcon size={24} />
+                            <div className="flex items-center gap-3">
+                                <Fuel className="text-red-500" size={20} />
+                                <div className="text-left">
+                                    <span className="text-sm font-medium text-neutral-900 block">
+                                        Komplain
+                                    </span>
+                                    <span className="text-xs text-neutral-500 block">
+                                        Laporkan kendala terkait pengisian BBM, layanan SPBU, atau transaksi.
+                                    </span>
+                                </div>
                             </div>
-                            <div className="flex-1">
-                                <h2 className="text-base font-bold text-red-900 mb-1">Komplain SPBU</h2>
-                                <p className="text-xs text-red-700 leading-relaxed">
-                                    Laporkan kendala terkait pengisian BBM, layanan SPBU, atau transaksi.
-                                </p>
-                            </div>
-                            <ChevronRight size={20} className="text-red-400 shrink-0" />
+                            <ChevronRight size={16} className="text-neutral-400 shrink-0" />
                         </button>
                     </div>
                 </div>

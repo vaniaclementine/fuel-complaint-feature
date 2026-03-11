@@ -41,7 +41,7 @@ function App() {
               <Route path="/bantuan" element={<Bantuan />} />
               <Route path="/notifikasi" element={<Navigate to="/pesan" replace />} />
               <Route path="/pesan" element={<PesanPage />} />
-              <Route path="/komplain-spbu" element={<KomplainSPBU />} />
+              <Route path="/komplain" element={<KomplainSPBU />} />
 
               {/* Fuel Complaint Flow */}
               <Route path="/komplain-bbm" element={<ClaimLanding />} />

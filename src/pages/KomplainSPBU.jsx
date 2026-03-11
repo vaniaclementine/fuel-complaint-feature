@@ -52,7 +52,7 @@ const KomplainSPBU = () => {
 
     return (
         <Layout showBottomNav={false}>
-            <Header title="Komplain SPBU" />
+            <Header title="Komplain" />
 
             <div className="p-4 pb-20 bg-neutral-50 min-h-screen">
                 <div className="mb-6">

@@ -39,7 +39,7 @@ const TransactionDetail = () => {
     }
 
     const handleKomplain = () => {
-        navigate('/bantuan', {
+        navigate('/komplain', {
             state: {
                 transactionId: txn.id,
                 spbu: txn.location,
@@ -145,7 +145,7 @@ const TransactionDetail = () => {
                                 className="w-full bg-[#1B4E9B] hover:bg-[#1B4E9B]/90 text-white font-semibold flex items-center justify-center gap-2"
                                 onClick={handleKomplain}
                             >
-                                Laporkan Kendala SPBU
+                                Laporkan Kendala
                                 <ChevronRight size={16} />
                             </Button>
                         </div>
