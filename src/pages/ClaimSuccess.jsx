@@ -76,22 +76,21 @@ const ClaimSuccess = () => {
                     </div>
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3 space-y-2">
                         <p className="text-xs text-neutral-600">
-                            <span className="font-semibold">Klaim akan diproses dalam waktu:</span>
+                            <span className="font-semibold">Komplain akan diproses dalam waktu:</span>
                         </p>
                         <p className="text-lg font-bold text-primary-blue">
                             {SLA.CLAIM_PROCESSING}
                         </p>
                         <p className="text-xs text-neutral-500 mt-2">
-                            Anda akan mendapat notifikasi setiap ada pembaruan status klaim.
+                            Anda akan mendapat notifikasi setiap ada pembaruan status komplain.
                         </p>
                     </div>
                 </div>
 
-                {/* Notification hint */}
                 <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-8 text-left">
                     <Bell size={16} className="text-amber-600 flex-shrink-0" />
                     <p className="text-xs text-amber-800">
-                        Notifikasi progress pengaduan akan muncul secara otomatis. Ketuk notifikasi untuk melihat perkembangan klaim.
+                        Notifikasi progress pengaduan akan muncul secara otomatis. Ketuk notifikasi untuk melihat perkembangan komplain.
                     </p>
                 </div>
 
@@ -101,7 +100,7 @@ const ClaimSuccess = () => {
                         className="w-full shadow-md font-bold text-white bg-[#1B4E9B] hover:bg-[#1B4E9B]/90"
                         onClick={() => navigate('/komplain-bbm/riwayat')}
                     >
-                        Lihat Status Klaim
+                        Status Komplain
                     </Button>
                     <Button
                         variant="ghost"
@@ -151,11 +150,11 @@ const ClaimSuccess = () => {
                                     <span className="font-semibold text-[#1B4E9B]">3–5 hari kerja</span>.
                                 </p>
                                 <p className="text-sm text-neutral-600 text-center leading-relaxed mb-5">
-                                    Anda akan mendapatkan notifikasi setiap ada pembaruan status klaim.
+                                    Anda akan mendapatkan notifikasi setiap ada pembaruan status komplain.
                                 </p>
 
                                 <div className="bg-neutral-50 rounded-xl p-3 mb-5 text-center">
-                                    <p className="text-xs text-neutral-500">Nomor Klaim</p>
+                                    <p className="text-xs text-neutral-500">Nomor Komplain</p>
                                     <p className="text-base font-bold font-mono text-neutral-900 mt-0.5">{claimId}</p>
                                 </div>
 

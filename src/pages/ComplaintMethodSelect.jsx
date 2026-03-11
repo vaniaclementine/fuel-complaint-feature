@@ -137,7 +137,7 @@ const ComplaintMethodSelect = () => {
                 <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-900">
                     <p className="font-semibold mb-1">Ajukan Komplain BBM</p>
                     <p className="text-xs text-blue-700 leading-relaxed">
-                        Pilih transaksi yang ingin diklaim atau tambahkan struk manual.
+                        Pilih transaksi yang ingin dikomplain atau tambahkan struk manual.
                         Total nilai transaksi harus mencapai <span className="font-bold">Rp {MINIMUM_CLAIM_VALUE.toLocaleString('id-ID')}</span> untuk melanjutkan.
                     </p>
                 </div>
@@ -420,7 +420,7 @@ const ComplaintMethodSelect = () => {
                     {!isEligible && (selectedIds.size + manualReceipts.length) > 0 && (
                         <div className="bg-orange-50 border border-orange-100 rounded-lg px-3 py-2 flex items-start gap-2 text-xs text-orange-800">
                             <AlertTriangle size={13} className="flex-shrink-0 mt-0.5" />
-                            <span>Total transaksi belum memenuhi minimum pengajuan klaim. Tambahkan transaksi atau unggah struk tambahan.</span>
+                            <span>Total transaksi belum memenuhi minimum pengajuan komplain. Tambahkan transaksi atau unggah struk tambahan.</span>
                         </div>
                     )}
 

@@ -71,7 +71,7 @@ export const STATUS_TIMELINE = [
     { key: 'received', label: 'Pengajuan Diterima' },
     { key: 'process', label: 'Sedang Diproses' },
     { key: 'investigation', label: 'Investigasi SPBU' },
-    { key: 'done', label: 'Keputusan Klaim' },
+    { key: 'done', label: 'Keputusan Komplain' },
 ];
 
 // Transaction Types

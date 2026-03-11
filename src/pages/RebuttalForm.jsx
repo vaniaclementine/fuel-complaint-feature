@@ -27,7 +27,7 @@ const RebuttalForm = () => {
                 <Header title="Ajukan Sanggahan" />
                 <div className="p-4 text-center py-16">
                     <AlertCircle className="text-neutral-400 mx-auto mb-3" size={48} />
-                    <p className="text-neutral-500">Klaim tidak ditemukan atau tidak bisa diajukan sanggahan.</p>
+                    <p className="text-neutral-500">Komplain tidak ditemukan atau tidak bisa diajukan sanggahan.</p>
                     <Button
                         variant="outline"
                         className="mt-4"
@@ -115,9 +115,9 @@ const RebuttalForm = () => {
 
                 {/* Original Claim Info */}
                 <div>
-                    <h3 className="text-sm font-semibold text-neutral-900 mb-2">Informasi Klaim</h3>
+                    <h3 className="text-sm font-semibold text-neutral-900 mb-2">Informasi Komplain</h3>
                     <div className="bg-neutral-50 p-3 rounded-lg space-y-1 text-xs">
-                        <p><span className="font-medium">Nomor Klaim:</span> {claim.id}</p>
+                        <p><span className="font-medium">Nomor Komplain:</span> {claim.id}</p>
                         <p><span className="font-medium">Alasan Penolakan:</span> {claim.rejectionReason || 'Tidak memenuhi persyaratan'}</p>
                     </div>
                 </div>

@@ -37,7 +37,7 @@ const ClaimHistory = () => {
     return (
         <>
             <Layout showBottomNav={true}>
-                <Header title="Riwayat Klaim Saya" />
+                <Header title="Riwayat Komplain Saya" />
 
                 <div className="p-4 space-y-4">
                     {/* Status Filter Pills */}
@@ -61,8 +61,8 @@ const ClaimHistory = () => {
                             </div>
                             <p className="text-neutral-400 text-sm">
                                 {statusFilter === 'all'
-                                    ? 'Belum ada riwayat klaim.'
-                                    : `Tidak ada klaim dengan status "${statusFilters.find(f => f.id === statusFilter)?.label}".`
+                                    ? 'Belum ada riwayat komplain.'
+                                    : `Tidak ada komplain dengan status "${statusFilters.find(f => f.id === statusFilter)?.label}".`
                                 }
                             </p>
                         </div>

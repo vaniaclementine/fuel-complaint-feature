@@ -206,7 +206,7 @@ const ClaimForm = () => {
                 { key: 'verifying', label: 'Sedang Diverifikasi', date: null, done: false },
                 { key: 'process', label: 'Sedang Diproses', date: null, done: false },
                 { key: 'investigation', label: 'Investigasi SPBU', date: null, done: false },
-                { key: 'done', label: 'Keputusan Klaim', date: null, done: false },
+                { key: 'done', label: 'Keputusan Komplain', date: null, done: false },
             ],
         };
 
@@ -487,7 +487,7 @@ const ClaimForm = () => {
                             id="evidence-additional"
                             icon={<FileText size={20} className="text-sky-600" />}
                             label="Bukti Tambahan"
-                            hint="Dokumen, foto, atau file lain yang mendukung klaim Anda (opsional)."
+                            hint="Dokumen, foto, atau file lain yang mendukung aduan Anda (opsional)."
                             accept="image/*,.pdf,video/mp4,video/quicktime,.doc,.docx"
                             acceptLabel="JPG, PNG, PDF, MP4, DOC"
                             files={evidence.additional}

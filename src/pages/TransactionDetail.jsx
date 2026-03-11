@@ -39,7 +39,7 @@ const TransactionDetail = () => {
     }
 
     const handleKomplain = () => {
-        navigate('/komplain-bbm', {
+        navigate('/bantuan', {
             state: {
                 transactionId: txn.id,
                 spbu: txn.location,
@@ -134,9 +134,9 @@ const TransactionDetail = () => {
                                     <AlertTriangle className="text-orange-600" size={20} />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-neutral-900 text-sm">Ada masalah setelah pengisian?</h3>
+                                    <h3 className="font-semibold text-neutral-900 text-sm">Ada kendala dengan layanan SPBU?</h3>
                                     <p className="text-xs text-neutral-500 mt-1">
-                                        Laporkan keluhan kualitas BBM Anda. Klaim akan diproses dalam 3–5 hari kerja.
+                                        Laporkan masalah kualitas BBM, takaran, pelayanan, atau fasilitas lainnya.
                                     </p>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@ const TransactionDetail = () => {
                                 className="w-full bg-[#1B4E9B] hover:bg-[#1B4E9B]/90 text-white font-semibold flex items-center justify-center gap-2"
                                 onClick={handleKomplain}
                             >
-                                Ajukan Komplain BBM
+                                Laporkan Kendala SPBU
                                 <ChevronRight size={16} />
                             </Button>
                         </div>

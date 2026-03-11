@@ -184,23 +184,6 @@ const HomeDashboardScreen = () => {
                         </div>
                     </div>
 
-                    {/* Dynamic Banner — Fuel Complaint */}
-                    <div className="px-4 py-4">
-                        <button
-                            onClick={() => navigate('/komplain-bbm')}
-                            className="w-full text-left"
-                        >
-                            <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-4 text-white shadow-md flex items-center gap-4 hover:shadow-lg transition-shadow active:scale-[0.99]">
-                                <div className="text-3xl">⛽</div>
-                                <div className="flex-1">
-                                    <p className="font-bold text-sm">Ada masalah dengan BBM?</p>
-                                    <p className="text-xs text-white/90 mt-0.5">Ajukan komplain & pantau status klaim Anda</p>
-                                </div>
-                                <ChevronRight size={18} className="text-white/80" />
-                            </div>
-                        </button>
-                    </div>
-
                     {/* Jelajah Layanan */}
                     <div className="px-4 py-4 bg-white">
                         <h3 className="text-base font-bold text-neutral-900 mb-4">

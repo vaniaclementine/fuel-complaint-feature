@@ -29,7 +29,7 @@ export const ClaimProvider = ({ children }) => {
                 { key: 'verifying', label: 'Sedang Diverifikasi', date: '2026-01-20T11:00:00', done: true },
                 { key: 'process', label: 'Sedang Diproses', date: '2026-01-21T08:00:00', done: true },
                 { key: 'investigation', label: 'Investigasi SPBU', date: '2026-01-22T10:00:00', done: true },
-                { key: 'done', label: 'Keputusan Klaim', date: '2026-01-24T14:00:00', done: true },
+                { key: 'done', label: 'Keputusan Komplain', date: '2026-01-24T14:00:00', done: true },
             ]
         },
         {
@@ -52,7 +52,7 @@ export const ClaimProvider = ({ children }) => {
                 { key: 'verifying', label: 'Sedang Diverifikasi', date: '2026-01-22T15:00:00', done: true },
                 { key: 'process', label: 'Sedang Diproses', date: '2026-01-23T09:00:00', done: true },
                 { key: 'investigation', label: 'Investigasi SPBU', date: null, done: false },
-                { key: 'done', label: 'Keputusan Klaim', date: null, done: false },
+                { key: 'done', label: 'Keputusan Komplain', date: null, done: false },
             ]
         },
         {
@@ -78,7 +78,7 @@ export const ClaimProvider = ({ children }) => {
                 { key: 'verifying', label: 'Sedang Diverifikasi', date: '2026-01-15T10:00:00', done: true },
                 { key: 'process', label: 'Sedang Diproses', date: '2026-01-16T08:00:00', done: true },
                 { key: 'investigation', label: 'Investigasi SPBU', date: '2026-01-18T10:00:00', done: true },
-                { key: 'done', label: 'Keputusan Klaim', date: '2026-01-22T16:30:00', done: true },
+                { key: 'done', label: 'Keputusan Komplain', date: '2026-01-22T16:30:00', done: true },
             ]
         },
         {
@@ -104,7 +104,7 @@ export const ClaimProvider = ({ children }) => {
                 { key: 'verifying', label: 'Sedang Diverifikasi', date: '2026-01-10T12:00:00', done: true },
                 { key: 'process', label: 'Sedang Diproses', date: '2026-01-11T08:00:00', done: true },
                 { key: 'investigation', label: 'Investigasi SPBU', date: '2026-01-13T10:00:00', done: true },
-                { key: 'done', label: 'Keputusan Klaim', date: '2026-01-15T14:00:00', done: true },
+                { key: 'done', label: 'Keputusan Komplain', date: '2026-01-15T14:00:00', done: true },
             ]
         }
     ]);

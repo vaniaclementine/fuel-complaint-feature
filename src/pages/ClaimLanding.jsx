@@ -45,7 +45,7 @@ const ClaimLanding = () => {
 
                 {/* Information Sections */}
                 <div className="space-y-3">
-                    <h3 className="text-sm font-semibold text-neutral-900">Informasi Program</h3>
+                    <h3 className="text-sm font-semibold text-neutral-900">Informasi Pengaduan</h3>
 
                     {/* Coverage */}
                     <Card className="p-0 overflow-hidden">
@@ -217,7 +217,7 @@ const ClaimLanding = () => {
                                 <ClipboardList size={24} />
                             </div>
                             <div className="text-left flex-1">
-                                <h3 className="font-semibold text-neutral-900">Lihat Status Klaim</h3>
+                                <h3 className="font-semibold text-neutral-900">Status Komplain</h3>
                                 <p className="text-xs text-neutral-500">Pantau proses pengajuan Anda</p>
                             </div>
                         </Card>

@@ -12,7 +12,7 @@ const SEED_NOTIFICATIONS = [
     {
         id: 10, timestamp: '2026-01-24T14:00:00', read: true,
         type: 'complaint_approved', claimId: 'CLM-9876',
-        title: 'Klaim Anda Disetujui ✅',
+        title: 'Komplain Anda Disetujui ✅',
         message: 'Pengaduan Anda telah diverifikasi dan disetujui. Kompensasi akan diproses sesuai ketentuan yang berlaku.',
         deepLink: '/komplain-bbm/CLM-9876', category: 'Complaint',
     },
@@ -63,7 +63,7 @@ const SEED_NOTIFICATIONS = [
     {
         id: 3, timestamp: '2026-01-22T16:30:00', read: false,
         type: 'complaint_rejected', claimId: 'CLM-9874',
-        title: 'Klaim Tidak Dapat Diproses ❌',
+        title: 'Komplain Tidak Dapat Diproses ❌',
         message: 'Setelah dilakukan investigasi, pengaduan Anda belum dapat disetujui. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
         deepLink: '/komplain-bbm/CLM-9874', category: 'Complaint',
     },
@@ -71,7 +71,7 @@ const SEED_NOTIFICATIONS = [
     {
         id: 2, timestamp: '2026-01-15T14:00:00', read: false,
         type: 'complaint_rejected', claimId: 'CLM-9873',
-        title: 'Klaim Tidak Dapat Diproses ❌',
+        title: 'Komplain Tidak Dapat Diproses ❌',
         message: 'Setelah dilakukan investigasi, pengaduan Anda belum dapat disetujui. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
         deepLink: '/komplain-bbm/CLM-9873', category: 'Complaint',
     },

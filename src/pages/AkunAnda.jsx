@@ -10,7 +10,6 @@ const AkunAnda = () => {
         lainnya: [
             { id: 'ganti-pin', label: 'Ganti PIN', path: '/ganti-pin' },
             { id: 'bantuan', label: 'Bantuan', path: '/bantuan' },
-            { id: 'komplain-bbm', label: 'Komplain BBM', path: '/komplain-bbm', highlighted: true },
             { id: 'tentang', label: 'Tentang MyPertamina', path: '/tentang' },
         ],
         komunikasiPrivasi: [
@@ -169,12 +168,12 @@ const AkunAnda = () => {
                                 <button
                                     key={menu.id}
                                     onClick={() => navigate(menu.path)}
-                                    className={`w-full flex items-center justify-between p-3 hover:bg-neutral-50 rounded-lg transition-colors ${menu.highlighted ? 'bg-orange-50 hover:bg-orange-100' : ''}`}
+                                    className="w-full flex items-center justify-between p-3 hover:bg-neutral-50 rounded-lg transition-colors"
                                 >
-                                    <span className={`text-sm ${menu.highlighted ? 'text-orange-600 font-semibold' : 'text-neutral-900'}`}>
-                                        {menu.highlighted && '⛽ '}{menu.label}
+                                    <span className="text-sm text-neutral-900">
+                                        {menu.label}
                                     </span>
-                                    <ChevronRight size={16} className={menu.highlighted ? 'text-orange-500' : 'text-neutral-400'} />
+                                    <ChevronRight size={16} className="text-neutral-400" />
                                 </button>
                             ))}
                         </div>

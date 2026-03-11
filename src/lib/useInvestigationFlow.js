@@ -7,7 +7,7 @@
  *   2 — Sedang Diverifikasi     10 000
  *   3 — Sedang Diproses         18 000
  *   4 — Investigasi SPBU        27 000
- *   5 — Keputusan Klaim         36 000  (alternates: approved → rejected → approved …)
+ *   5 — Keputusan Komplain      36 000  (alternates: approved → rejected → approved …)
  */
 
 // Alternating outcome: 0 = approved, 1 = rejected, 2 = approved, …
@@ -47,11 +47,11 @@ export const startInvestigationFlow = (claimId, updateClaimStatus, addNotificati
                 const compensationAmount = 250_000 + steps * 50_000;
                 updateClaimStatus(claimId, {
                     status: 'done', decisionAt: decisionNow, compensationAmount,
-                    timelineStep: { key: 'done', label: 'Klaim Disetujui', date: decisionNow, done: true, outcome: 'approved' },
+                    timelineStep: { key: 'done', label: 'Komplain Disetujui', date: decisionNow, done: true, outcome: 'approved' },
                 });
                 addNotification({
                     type: 'complaint_approved', claimId,
-                    title: 'Klaim Anda Disetujui ✅',
+                    title: 'Komplain Anda Disetujui ✅',
                     message: `Pengaduan ${claimId} telah disetujui. Estimasi kompensasi: Rp ${compensationAmount.toLocaleString('id-ID')}.`,
                     deepLink: `/komplain-bbm/${claimId}`,
                     category: 'Complaint',
@@ -59,12 +59,12 @@ export const startInvestigationFlow = (claimId, updateClaimStatus, addNotificati
             } else {
                 updateClaimStatus(claimId, {
                     status: 'rejected', rejectedAt: decisionNow,
-                    rejectionReason: 'Setelah dilakukan investigasi, bukti yang dilampirkan belum memenuhi persyaratan klaim. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
-                    timelineStep: { key: 'done', label: 'Klaim Ditolak', date: decisionNow, done: true, outcome: 'rejected' },
+                    rejectionReason: 'Setelah dilakukan investigasi, bukti yang dilampirkan belum memenuhi persyaratan. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
+                    timelineStep: { key: 'done', label: 'Komplain Ditolak', date: decisionNow, done: true, outcome: 'rejected' },
                 });
                 addNotification({
                     type: 'complaint_rejected', claimId,
-                    title: 'Klaim Tidak Dapat Diproses ❌',
+                    title: 'Komplain Tidak Dapat Diproses ❌',
                     message: 'Setelah dilakukan investigasi, pengaduan Anda belum dapat disetujui. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
                     deepLink: `/komplain-bbm/${claimId}`,
                     category: 'Complaint',
@@ -140,7 +140,7 @@ export const startInvestigationFlow = (claimId, updateClaimStatus, addNotificati
         });
     }, 27000);
 
-    // Stage 5 — Keputusan Klaim (randomized)
+    // Stage 5 — Keputusan Komplain (randomized)
     schedule(() => {
         const approved = (_outcomeCounter++ % 2) === 0; // even = approved, odd = rejected
         const now = new Date().toISOString();
@@ -153,24 +153,24 @@ export const startInvestigationFlow = (claimId, updateClaimStatus, addNotificati
 
             updateClaimStatus(claimId, {
                 status: 'done', decisionAt: now, compensationAmount,
-                timelineStep: { key: 'done', label: 'Klaim Disetujui', date: now, done: true, outcome: 'approved' },
+                timelineStep: { key: 'done', label: 'Komplain Disetujui', date: now, done: true, outcome: 'approved' },
             });
             addNotification({
                 type: 'complaint_approved', claimId,
-                title: 'Klaim Anda Disetujui ✅',
-                message: `Pengaduan ${claimId} telah disetujui. Estimasi kompensasi: Rp ${formattedAmount}. Ketuk untuk melihat detail klaim.`,
+                title: 'Komplain Anda Disetujui ✅',
+                message: `Pengaduan ${claimId} telah disetujui. Estimasi kompensasi: Rp ${formattedAmount}. Ketuk untuk melihat detail komplain.`,
                 deepLink: `/komplain-bbm/${claimId}`,
                 category: 'Complaint',
             });
         } else {
             updateClaimStatus(claimId, {
                 status: 'rejected', rejectedAt: now,
-                rejectionReason: 'Setelah dilakukan investigasi, bukti yang dilampirkan belum memenuhi persyaratan klaim. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
-                timelineStep: { key: 'done', label: 'Klaim Ditolak', date: now, done: true, outcome: 'rejected' },
+                rejectionReason: 'Setelah dilakukan investigasi, bukti yang dilampirkan belum memenuhi persyaratan komplain. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
+                timelineStep: { key: 'done', label: 'Komplain Ditolak', date: now, done: true, outcome: 'rejected' },
             });
             addNotification({
                 type: 'complaint_rejected', claimId,
-                title: 'Klaim Tidak Dapat Diproses ❌',
+                title: 'Komplain Tidak Dapat Diproses ❌',
                 message: 'Setelah dilakukan investigasi, pengaduan Anda belum dapat disetujui. Anda dapat mengajukan sanggahan dalam waktu 3 hari.',
                 deepLink: `/komplain-bbm/${claimId}`,
                 category: 'Complaint',
@@ -207,7 +207,7 @@ export const startRebuttalFlow = (claimId, updateClaimStatus, addNotification, f
         addNotification({
             type: 'rebuttal_submitted', claimId,
             title: 'Sanggahan Anda Telah Diajukan',
-            message: `Sanggahan untuk klaim ${claimId} telah kami terima. Tim kami akan meninjau kembali pengaduan Anda.`,
+            message: `Sanggahan untuk komplain ${claimId} telah kami terima. Tim kami akan meninjau kembali pengaduan Anda.`,
             deepLink: `/komplain-bbm/${claimId}`,
             category: 'Rebuttal',
         });
@@ -224,7 +224,7 @@ export const startRebuttalFlow = (claimId, updateClaimStatus, addNotification, f
                 addNotification({
                     type: 'rebuttal_accepted', claimId,
                     title: 'Sanggahan Anda Diterima ✅',
-                    message: `Setelah peninjauan ulang, klaim ${claimId} disetujui sesuai ketentuan program. Estimasi kompensasi: Rp ${compensationAmount.toLocaleString('id-ID')}.`,
+                    message: `Setelah peninjauan ulang, komplain ${claimId} disetujui sesuai ketentuan program. Estimasi kompensasi: Rp ${compensationAmount.toLocaleString('id-ID')}.`,
                     deepLink: `/komplain-bbm/${claimId}`,
                     category: 'Rebuttal',
                 });
@@ -236,7 +236,7 @@ export const startRebuttalFlow = (claimId, updateClaimStatus, addNotification, f
                 addNotification({
                     type: 'rebuttal_rejected', claimId,
                     title: 'Sanggahan Anda Ditolak ❌',
-                    message: `Setelah peninjauan ulang, keputusan sebelumnya untuk klaim ${claimId} tetap berlaku.`,
+                    message: `Setelah peninjauan ulang, keputusan sebelumnya untuk komplain ${claimId} tetap berlaku.`,
                     deepLink: `/komplain-bbm/${claimId}`,
                     category: 'Rebuttal',
                 });
@@ -250,7 +250,7 @@ export const startRebuttalFlow = (claimId, updateClaimStatus, addNotification, f
     addNotification({
         type: 'rebuttal_submitted', claimId,
         title: 'Sanggahan Anda Telah Diajukan',
-        message: `Sanggahan untuk klaim ${claimId} telah kami terima. Tim kami akan meninjau kembali pengaduan Anda.`,
+        message: `Sanggahan untuk komplain ${claimId} telah kami terima. Tim kami akan meninjau kembali pengaduan Anda.`,
         deepLink: `/komplain-bbm/${claimId}`,
         category: 'Rebuttal',
     });
@@ -286,7 +286,7 @@ export const startRebuttalFlow = (claimId, updateClaimStatus, addNotification, f
             addNotification({
                 type: 'rebuttal_accepted', claimId,
                 title: 'Sanggahan Anda Diterima ✅',
-                message: `Setelah peninjauan ulang, klaim ${claimId} disetujui sesuai ketentuan program. Estimasi kompensasi: Rp ${compensationAmount.toLocaleString('id-ID')}.`,
+                message: `Setelah peninjauan ulang, komplain ${claimId} disetujui sesuai ketentuan program. Estimasi kompensasi: Rp ${compensationAmount.toLocaleString('id-ID')}.`,
                 deepLink: `/komplain-bbm/${claimId}`,
                 category: 'Rebuttal',
             });
@@ -298,7 +298,7 @@ export const startRebuttalFlow = (claimId, updateClaimStatus, addNotification, f
             addNotification({
                 type: 'rebuttal_rejected', claimId,
                 title: 'Sanggahan Anda Ditolak ❌',
-                message: `Setelah peninjauan ulang, keputusan sebelumnya untuk klaim ${claimId} tetap berlaku.`,
+                message: `Setelah peninjauan ulang, keputusan sebelumnya untuk komplain ${claimId} tetap berlaku.`,
                 deepLink: `/komplain-bbm/${claimId}`,
                 category: 'Rebuttal',
             });

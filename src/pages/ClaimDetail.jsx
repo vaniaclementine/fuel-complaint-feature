@@ -25,10 +25,10 @@ const ClaimDetail = () => {
     if (!claim) {
         return (
             <Layout showBottomNav={false}>
-                <Header title="Detail Klaim" />
+                <Header title="Detail Komplain" />
                 <div className="p-4 text-center py-16">
                     <AlertCircle className="text-neutral-400 mx-auto mb-3" size={48} />
-                    <p className="text-neutral-500">Klaim tidak ditemukan.</p>
+                    <p className="text-neutral-500">Komplain tidak ditemukan.</p>
                     <Button variant="outline" className="mt-4" onClick={() => navigate('/komplain-bbm/riwayat')}>
                         Kembali ke Riwayat
                     </Button>
@@ -70,7 +70,7 @@ const ClaimDetail = () => {
 
     return (
         <Layout showBottomNav={false}>
-            <Header title="Detail Klaim" />
+            <Header title="Detail Komplain" />
 
             <div className="p-4 space-y-4 pb-28">
                 {/* Claim ID & Status */}
@@ -78,7 +78,7 @@ const ClaimDetail = () => {
                     <Card className="bg-gradient-to-br from-blue-50 to-blue-100/30">
                         <div className="flex justify-between items-start mb-3">
                             <div>
-                                <p className="text-xs text-neutral-500 mb-1">Nomor Klaim</p>
+                                <p className="text-xs text-neutral-500 mb-1">Nomor Komplain</p>
                                 <p className="text-lg font-bold text-neutral-900 font-mono">{claim.id}</p>
                             </div>
                             <StatusBadge status={claim.status} />
@@ -107,10 +107,10 @@ const ClaimDetail = () => {
                         <div className="flex gap-3">
                             <BadgeCheck className="text-green-600 flex-shrink-0 mt-0.5" size={20} />
                             <div className="flex-1">
-                                <p className="font-bold text-sm text-green-900 mb-1">Klaim Diterima</p>
+                                <p className="font-bold text-sm text-green-900 mb-1">Komplain Diterima</p>
                                 <p className="text-xs text-green-700 leading-relaxed mb-2">
                                     Investigasi menunjukkan adanya indikasi masalah setelah pengisian BBM di SPBU terkait.
-                                    Klaim Anda telah disetujui dan akan diproses sesuai ketentuan program.
+                                    Komplain Anda telah disetujui dan akan diproses sesuai ketentuan.
                                 </p>
                                 {claim.decisionAt && (
                                     <p className="text-xs text-green-600">
@@ -136,7 +136,7 @@ const ClaimDetail = () => {
                         <div className="flex gap-3">
                             <AlertCircle className="text-red-600 flex-shrink-0 mt-0.5" size={20} />
                             <div className="flex-1">
-                                <p className="font-bold text-sm text-red-900 mb-1">Klaim Ditolak</p>
+                                <p className="font-bold text-sm text-red-900 mb-1">Komplain Ditolak</p>
                                 <p className="text-xs text-red-700 leading-relaxed mb-2">
                                     {claim.rejectionReason || 'Bukti yang diajukan tidak memenuhi persyaratan.'}
                                 </p>
@@ -168,7 +168,7 @@ const ClaimDetail = () => {
                             <div className="flex-1">
                                 <p className="font-bold text-sm text-green-900 mb-1">Sanggahan Diterima</p>
                                 <p className="text-xs text-green-700 leading-relaxed mb-2">
-                                    Setelah peninjauan ulang, klaim Anda telah disetujui sesuai ketentuan program.
+                                    Setelah peninjauan ulang, komplain Anda telah disetujui sesuai ketentuan.
                                 </p>
                                 {claim.decisionAt && (
                                     <p className="text-xs text-green-600">
@@ -196,7 +196,7 @@ const ClaimDetail = () => {
                             <div className="flex-1">
                                 <p className="font-bold text-sm text-red-900 mb-1">Sanggahan Ditolak</p>
                                 <p className="text-xs text-red-700 leading-relaxed">
-                                    Setelah peninjauan ulang, keputusan penolakan sebelumnya tetap berlaku. Klaim Anda dinyatakan tidak memenuhi persyaratan program.
+                                    Setelah peninjauan ulang, keputusan penolakan sebelumnya tetap berlaku. Komplain Anda dinyatakan tidak memenuhi persyaratan.
                                 </p>
                                 {claim.decisionAt && (
                                     <p className="text-xs text-red-600 mt-1">
@@ -361,14 +361,14 @@ const ClaimDetail = () => {
                             disabled={!!simLoading}
                             className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 disabled:opacity-50 transition-colors"
                         >
-                            {simLoading === 'rejected' ? 'Memproses...' : '❌ Klaim Ditolak'}
+                            {simLoading === 'rejected' ? 'Memproses...' : '❌ Komplain Ditolak'}
                         </button>
                         <button
                             onClick={() => handleSimulate('approved')}
                             disabled={!!simLoading}
                             className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-green-50 text-green-700 border border-green-200 hover:bg-green-100 disabled:opacity-50 transition-colors"
                         >
-                            {simLoading === 'approved' ? 'Memproses...' : '✅ Klaim Disetujui'}
+                            {simLoading === 'approved' ? 'Memproses...' : '✅ Komplain Disetujui'}
                         </button>
                     </div>
                 </div>
@@ -386,7 +386,7 @@ const ClaimDetail = () => {
                         Ajukan Sanggahan
                     </Button>
                     <p className="text-xs text-neutral-500 text-center mt-2">
-                        Sanggahan dapat diajukan maksimal 3 hari setelah klaim ditolak
+                        Sanggahan dapat diajukan maksimal 3 hari setelah komplain ditolak
                     </p>
                 </div>
             )}
